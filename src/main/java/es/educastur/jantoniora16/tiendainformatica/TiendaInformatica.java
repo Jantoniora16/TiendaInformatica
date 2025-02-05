@@ -100,9 +100,38 @@ public class TiendaInformatica
     }
     
     //<editor-fold defaultstate="collapsed" desc="Métodos para gestion de clientes">
-    private static void altaCliente()
+    private static void altaClientes()
     {
+        String continuar;
         
+        do
+        {
+            System.out.print("Ingrese el DNI del cliente: ");
+            String dni = sc.nextLine();
+            
+            if (clientes.containsKey(dni))
+            {
+                System.out.println("El cliente con DNI " + dni + " ya esta resgistrado.");
+            }
+            else
+            {
+                System.out.print("Ingrese el nombre del cliente: ");
+                String nombre = sc.nextLine();
+                System.out.print("Ingrese el telefono del cliente: ");
+                String telefono = sc.nextLine();
+                System.out.print("Ingrese el email del cliente: ");
+                String email = sc.nextLine();
+                
+                //Crear nuevo cliente y almacenarlo en Clientes
+                clientes.put(dni, new Cliente(dni, nombre, telefono, email));
+                System.out.println("¡Cliente registrado con exito!");
+            }
+            
+            //Pregunta si desea dar de alta a otro cliente
+            System.out.print("¿Desea registrar otro cliente? (s/n): ");
+            continuar = sc.nextLine();
+        }
+        while (continuar.equalsIgnoreCase("s"));
     }
     //</editor-fold>
     //</editor-fold>

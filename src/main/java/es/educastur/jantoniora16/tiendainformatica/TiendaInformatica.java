@@ -106,6 +106,7 @@ public class TiendaInformatica
         
         do
         {
+            System.out.println("= CREAR CLIENTES =");
             System.out.print("Ingrese el DNI del cliente: ");
             String dni = sc.nextLine();
             
@@ -129,6 +130,89 @@ public class TiendaInformatica
             
             //Pregunta si desea dar de alta a otro cliente
             System.out.print("¿Desea registrar otro cliente? (s/n): ");
+            continuar = sc.nextLine();
+        }
+        while (continuar.equalsIgnoreCase("s"));
+    }
+    
+    private static void mostrarClientes()
+    {
+        if (clientes.isEmpty())
+        {
+            System.out.println("No hay clientes registrados.");
+        }
+        else
+        {
+            System.out.println("= LISTA DE CLIENTES =");
+            for (Cliente cliente : clientes.values())
+            {
+                System.out.println(cliente);
+            }
+        }
+    }
+    
+    private static void modificarClientes()
+    {
+        String continuar;
+        
+        do
+        {
+            System.out.println("= MODIFICAR CLIENTES =");
+            System.out.print("Ingrese el DNI del cliente a modificar: ");
+            String dni = sc.nextLine();
+            
+            if (!clientes.containsKey(dni))
+            {
+                System.out.println("El cliente con DNI " + dni + " no esta resgistrado.");
+            }
+            else
+            {
+                Cliente cliente = clientes.get(dni);
+                
+                System.out.println("Datos actuales del cliente:");
+                System.out.println(cliente);
+                
+                System.out.print("Ingrese el nuevo telefono del cliente (actual: " + cliente.getTelefono() + "): ");
+                String nuevoTelefono = sc.nextLine();
+                System.out.print("Ingrese el nuevo email del cliente (actual: " + cliente.getEmail() + "): ");
+                String nuevoEmail = sc.nextLine();
+                
+                //Actualizar datos del cliente
+                cliente.setTelefono(nuevoTelefono);
+                cliente.setEmail(nuevoEmail);
+                
+                System.out.println("¡Cliente actualizado correctamente!");
+            }
+            
+            //Pregunta si desea modificar a otro cliente
+            System.out.print("¿Desea modificar otro cliente? (s/n): ");
+            continuar = sc.nextLine();
+        }
+        while (continuar.equalsIgnoreCase("s"));
+    }
+    
+    private static void eliminarClientes()
+    {
+        String continuar;
+        
+        do
+        {
+            System.out.println("= ELIMINAR CLIENTES =");
+            System.out.print("Ingrese el DNI del cliente a eliminar: ");
+            String dni = sc.nextLine();
+            
+            if (!clientes.containsKey(dni))
+            {
+                System.out.println("El cliente con DNI " + dni + " no esta resgistrado.");
+            }
+            else
+            {
+                clientes.remove(dni);
+                System.out.println("¡Cliente eliminado correctamente!");
+            }
+            
+            //Pregunta si desea eliminar a otro cliente
+            System.out.print("¿Desea eliminar otro cliente? (s/n): ");
             continuar = sc.nextLine();
         }
         while (continuar.equalsIgnoreCase("s"));

@@ -1,5 +1,7 @@
 package es.educastur.jantoniora16.tiendainformatica;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -143,8 +145,13 @@ public class TiendaInformatica
         }
         else
         {
-            System.out.println("= LISTA DE CLIENTES =");
-            for (Cliente cliente : clientes.values())
+            //Convertir los valores del HashMap a una lista
+            ArrayList<Cliente> clientesOrdenados = new ArrayList<>(clientes.values());
+            //Ordenar la lista usando la implementación de Comparable en Cliente
+            Collections.sort(clientesOrdenados);
+            
+            System.out.println("= LISTA DE CLIENTES ORDENADOS POR NOMBRE =");
+            for (Cliente cliente : clientesOrdenados)
             {
                 System.out.println(cliente);
             }

@@ -1,10 +1,10 @@
 package es.educastur.jantoniora16.tiendainformatica;
 
 /**
- * @author alu25d
+ * @author Joseiro
  */
 
-public class Cliente
+public class Cliente implements Comparable<Cliente>
 {
     //Atributos
     private String dni;
@@ -62,10 +62,16 @@ public class Cliente
         this.email = email;
     }
     
+    // Implementación de Comparable para ordenar por nombre (ignorando mayúsculas/minúsculas)
+    @Override
+    public int compareTo(Cliente o)
+    {
+        return this.nombre.compareToIgnoreCase(o.getNombre());
+    }
+
     //Método toString para mostrar la información del cliente
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Cliente{" + "dni=" + dni + ", nombre=" + nombre + ", telefono=" + telefono + ", email=" + email + '}';
-    } 
+    }
 }
